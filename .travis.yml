@@ -1,0 +1,24 @@
+language: python
+
+python:
+  - "3.8"
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: build_and_test
+      name: "Build"
+      install: .travis/build_base.sh
+      script: echo "BUILT SUCCESSFULY"
+      
+    - stage: build_and_test
+      name: "Build and run test"
+      install: .travis/build_test.sh
+      script: .travis/test_ci.sh
+
+    - stage: deploy
+      name: "Deploy"
+      script: 
+        - echo "NO DEPLOYEMENT YET"
